@@ -1,0 +1,10 @@
+
+# OSX
+.DS_Store
+# Dependency directories
+node_modules
+# Visual Studio files
+.ntvs_analysis.dat
+.vs
+bin
+obj
