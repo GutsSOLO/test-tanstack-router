@@ -1,18 +1,33 @@
 import { useQuery } from "@tanstack/react-query"
-import { postQueryOptions } from "../queries/postsQuery"
-import { postRoute } from "../routes"
+import { postsQueryOptions } from "../queries/postsQuery"
+import { Link } from "@tanstack/react-router"
 
 function Post() {
-  const { postId } = postRoute.useParams()
-  const { data: post } = useQuery({
-    ...postQueryOptions(postId),
+  const { data: posts } = useQuery({
+    ...postsQueryOptions(),
     suspense: true,
   })
-  console.log('post', post)
+  console.log('posts', posts)
   return (
     <div className='app'>
-      <h4 className="text-xl font-bold underline">{post?.title}</h4>
-      <div className="text-sm">{post?.body}</div>
+      <h1>Posts</h1>
+      {posts && posts.map(
+          (post) => {
+            return (
+                <Link
+                  key={post.id} 
+                  to="/posts/$postId"
+                  params={{
+                    postId: post.id,
+                  }}
+                  className="block py-1 text-blue-800 hover:text-blue-600 [&.active]:font-bold"
+                  activeProps={{ className: 'text-black font-bold' }}
+                >
+                  <div>{post.title.substring(0, 20)}</div>
+                </Link>
+            )
+          },
+        )}
     </div>
   )
 }

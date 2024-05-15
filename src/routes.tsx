@@ -40,8 +40,8 @@ export const postsRoute = createRoute({
 })
 
 export const postRoute = createRoute({
-  getParentRoute: () => postsRoute,
-  path: '$postId',
+  getParentRoute: () => rootRoute,
+  path: '/posts/$postId',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   loader: ({ context: { queryClient }, params: { postId } }: any) =>
     queryClient.ensureQueryData(postQueryOptions(postId)),

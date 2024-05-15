@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext } from 'react'
+import { createContext, ReactNode, useContext } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { postsQueryOptions, PostType } from '../queries/postsQuery'
 
@@ -8,6 +8,7 @@ export type DataContextType = {
 
 export const DataContext = createContext<DataContextType | undefined>(undefined)
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useDataContext() {
   const context = useContext(DataContext)
   if (!context) {
